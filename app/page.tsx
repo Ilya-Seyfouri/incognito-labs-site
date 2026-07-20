@@ -1,65 +1,217 @@
-import Image from "next/image";
+import Reveal from "./reveal";
+
+const EMAIL = "ilya@incognitolabs.org";
+
+/*
+ * Engine-turned engraving: two sets of concentric hairline rings, one
+ * centre-offset and slowly rotating. The interference between them reads
+ * as guilloché — the pattern cut into a watch caseback.
+ */
+function Guilloche() {
+  const rings = Array.from({ length: 44 }, (_, i) => 30 + i * 16);
+  return (
+    <svg
+      className="guilloche"
+      viewBox="0 0 1500 1500"
+      aria-hidden="true"
+      fill="none"
+    >
+      <g stroke="currentColor" strokeWidth="0.6">
+        {rings.map((r) => (
+          <circle key={`a${r}`} cx="750" cy="750" r={r} />
+        ))}
+      </g>
+      <g className="g-rotor" stroke="currentColor" strokeWidth="0.6">
+        {rings.map((r) => (
+          <circle key={`b${r}`} cx="758" cy="744" r={r} />
+        ))}
+      </g>
+    </svg>
+  );
+}
+
+const projects = [
+  {
+    ref: "IL–01",
+    name: "Slimmer",
+    desc: "A women's fitness and body-transformation app for iOS. A personal plan that adapts as the body does — and a coach that never sleeps.",
+    specs: [
+      "Personalised 28-day plans",
+      "AI progress analysis",
+      "Calorie scanner",
+      "24/7 AI coach",
+    ],
+    status: "iOS · In development",
+    proof: null as string | null,
+    active: true,
+  },
+  {
+    ref: "IL–02",
+    name: "CV Lab",
+    desc: "An AI tool that writes a customised CV for each job application — tailored to the role, not recycled from the last one.",
+    specs: ["Per-application tailoring", "AI-generated CVs"],
+    status: "Shipped",
+    proof: "£5,000+ revenue",
+    active: false,
+  },
+  {
+    ref: "IL–03",
+    name: "Winter Arc 26",
+    desc: "A men's discipline and focus app for iOS. Daily tasks verified by camera, a ranked ladder to climb, and a lock-mode that keeps distracting apps shut.",
+    specs: [
+      "Camera-verified daily tasks",
+      "ELO ranked ladder · Bronze → Top 500",
+      "Focus lock-mode",
+    ],
+    status: "iOS · In development",
+    proof: null,
+    active: true,
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <>
+      <header className="site-header">
+        <div className="shell header-inner">
+          <p className="legal-name">
+            INCOGNITO LABS <span className="ltd">LIMITED</span>
           </p>
+          <div className="header-meta">
+            <span className="header-place">Newcastle · United Kingdom</span>
+            <a className="header-link" href={`mailto:${EMAIL}`}>
+              {EMAIL}
+            </a>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+      </header>
+
+      <main>
+        <section className="hero">
+          <Guilloche />
+          <div className="shell hero-inner">
+            <p className="eyebrow hero-eyebrow hero-rise d1">
+              Newcastle upon Tyne · United Kingdom
+            </p>
+            <h1 className="wordmark hero-rise d2">
+              INCOGNITO
+              <br />
+              LABS
+            </h1>
+            <p className="tagline hero-rise d3">
+              A Newcastle studio building iOS and AI-powered mobile
+              applications.
+            </p>
+            <p className="subline hero-rise d4">
+              Software for people who want to disappear from distractions and
+              get better at what they care about.
+            </p>
+            <div className="status-row hero-rise d5">
+              <span className="status-live">
+                <span className="dot" />
+                Currently building — Slimmer · Winter Arc 26
+              </span>
+              <span className="status-sep">/</span>
+              <span>CV Lab shipped · £5,000+ revenue</span>
+            </div>
+          </div>
+        </section>
+
+        <section className="section" id="work">
+          <div className="shell">
+            <Reveal>
+              <div className="section-head">
+                <h2 className="section-title">The Register</h2>
+                <p className="eyebrow">Selected work</p>
+              </div>
+            </Reveal>
+            {projects.map((p, i) => (
+              <Reveal key={p.ref} delay={i * 80}>
+                <article className="entry">
+                  <p className="entry-ref">{p.ref}</p>
+                  <div>
+                    <h3 className="entry-name">{p.name}</h3>
+                    <p className="entry-desc">{p.desc}</p>
+                    <ul className="entry-specs">
+                      {p.specs.map((s) => (
+                        <li className="spec" key={s}>
+                          {s}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="entry-status">
+                    <span className="status-chip">
+                      {p.active && <span className="dot" />}
+                      {p.status}
+                    </span>
+                    {p.proof && <span className="figure-brass">{p.proof}</span>}
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+
+        <section className="section" id="studio">
+          <div className="shell">
+            <Reveal>
+              <div className="section-head">
+                <h2 className="section-title">The Studio</h2>
+                <p className="eyebrow">Est. Newcastle</p>
+              </div>
+            </Reveal>
+            <Reveal delay={100}>
+              <div className="studio-grid">
+                <div className="studio-note">
+                  <p>
+                    Incognito Labs is a small studio in Newcastle,{" "}
+                    <strong>United Kingdom</strong>. We build focused tools —
+                    apps that remove noise rather than add to it.
+                  </p>
+                  <p>
+                    Fewer features, chosen carefully. Shipped quietly,
+                    maintained properly. If a product doesn&apos;t help someone
+                    concentrate, improve, or switch the rest of the world off,
+                    we don&apos;t build it.
+                  </p>
+                </div>
+                <div className="contact-block">
+                  <p className="contact-label">Enquiries</p>
+                  <a className="contact-mail" href={`mailto:${EMAIL}`}>
+                    {EMAIL}
+                  </a>
+                  <p className="contact-place">
+                    Newcastle upon Tyne · United Kingdom
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </section>
       </main>
-    </div>
+
+      <footer className="site-footer">
+        <div className="shell footer-grid">
+          <div className="footer-id">
+            <p className="legal-name">
+              INCOGNITO LABS <span className="ltd">LIMITED</span>
+            </p>
+            <p className="eyebrow">
+              iOS &amp; AI-powered mobile applications
+            </p>
+          </div>
+          <div className="footer-meta">
+            <a className="footer-mail" href={`mailto:${EMAIL}`}>
+              {EMAIL}
+            </a>
+            <span>Newcastle upon Tyne · United Kingdom</span>
+            <span>
+              INCOGNITO LABS LIMITED · Registered in England &amp; Wales · 2026
+            </span>
+          </div>
+        </div>
+      </footer>
+    </>
   );
 }
