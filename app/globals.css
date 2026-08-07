@@ -6,6 +6,7 @@
   --hairline: #24262b;
   --hairline-soft: #1a1c20;
   --platinum: #d6d8dc;
+  --platinum-dim: #b0b4bb; /* long-form reading; ~8.9:1 on --ink */
   --steel: #82868e;
   --steel-dim: #5c6068;
   --brass: #a79060;
@@ -93,6 +94,15 @@ button:focus-visible {
 
 .legal-name .ltd {
   color: var(--steel-dim);
+}
+
+a.legal-name-link {
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+a.legal-name-link:hover {
+  color: var(--brass-bright);
 }
 
 .header-meta {
@@ -533,6 +543,432 @@ button:focus-visible {
 
 .footer-mail:hover {
   color: var(--brass-bright);
+}
+
+/* ---------- legal document ---------- */
+
+.doc-page {
+  padding-block: clamp(3.5rem, 8vh, 5.5rem) clamp(4rem, 9vh, 6.5rem);
+}
+
+.doc {
+  width: min(720px, 100% - 2.5rem);
+  margin-inline: auto;
+}
+
+.doc-head {
+  border-bottom: 1px solid var(--hairline);
+  padding-bottom: 2.25rem;
+}
+
+.doc-title {
+  font-family: var(--font-display), serif;
+  font-weight: 400;
+  font-size: clamp(1.75rem, 5vw, 2.625rem);
+  line-height: 1.2;
+  letter-spacing: 0.045em;
+  color: var(--platinum);
+  margin-bottom: 1.75rem;
+  text-wrap: balance;
+}
+
+/* the one date that matters, given the weight of a plate mark */
+.doc-updated {
+  display: inline-block;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brass-bright);
+  background: color-mix(in srgb, var(--plate) 65%, transparent);
+  border: 1px solid var(--hairline);
+  padding: 0.6rem 1rem;
+}
+
+.doc-lede {
+  padding-top: 2.5rem;
+}
+
+.doc-lede p {
+  color: var(--platinum);
+  font-size: 1.0625rem;
+}
+
+/* ---------- clauses ---------- */
+
+.clause {
+  padding-top: 3.25rem;
+}
+
+.clause-title {
+  position: relative;
+  font-family: var(--font-display), serif;
+  font-weight: 400;
+  font-size: clamp(1.1875rem, 2.8vw, 1.4375rem);
+  line-height: 1.35;
+  letter-spacing: 0.05em;
+  color: var(--platinum);
+  margin-bottom: 1.5rem;
+  text-wrap: pretty;
+}
+
+.clause-no {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.8125rem;
+  letter-spacing: 0.1em;
+  color: var(--brass);
+  margin-right: 0.65em;
+}
+
+/* room in the margin only once the measure is clear of it */
+@media (min-width: 1120px) {
+  .clause-no {
+    position: absolute;
+    right: 100%;
+    top: 0.4em;
+    margin-right: 1.75rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* §2 asks to be read; the plate and the brighter mark are the whole accent */
+.clause-flag > .clause-body {
+  border-left: 2px solid var(--brass);
+  background: color-mix(in srgb, var(--plate) 70%, transparent);
+  padding: 1.75rem;
+}
+
+.clause-flag .clause-no {
+  color: var(--brass-bright);
+}
+
+.doc-body p {
+  color: var(--platinum-dim);
+  line-height: 1.8;
+}
+
+.doc-strong {
+  color: var(--platinum);
+  font-weight: 600;
+}
+
+.doc-body p + p,
+.doc-body .doc-list + p {
+  margin-top: 1.15rem;
+}
+
+.doc-sub {
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  letter-spacing: 0.015em;
+  color: var(--platinum);
+  margin-bottom: 0.9rem;
+}
+
+.doc-sub:not(:first-child) {
+  margin-top: 2.25rem;
+}
+
+.doc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.doc-body p + .doc-list {
+  margin-top: 1.15rem;
+}
+
+.doc-list li {
+  position: relative;
+  padding-left: 1.35rem;
+  color: var(--platinum-dim);
+  line-height: 1.75;
+}
+
+.doc-list li::before {
+  content: "·";
+  position: absolute;
+  left: 0.3rem;
+  color: var(--brass);
+}
+
+.doc-link {
+  color: var(--platinum);
+  text-decoration: none;
+  border-bottom: 1px solid var(--brass);
+  transition: color 0.25s ease, border-color 0.25s ease;
+  overflow-wrap: anywhere;
+}
+
+.doc-link:hover {
+  color: var(--brass-bright);
+  border-color: var(--brass-bright);
+}
+
+/* ---------- sharing table ---------- */
+
+.doc-table-wrap {
+  margin-top: 1.75rem;
+  overflow-x: auto;
+}
+
+.doc-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.doc-table thead th {
+  font-family: var(--font-mono), monospace;
+  font-weight: 400;
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--steel);
+  padding: 0 1.5rem 0.85rem 0;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.doc-table tbody th {
+  font-weight: 500;
+  color: var(--platinum);
+  white-space: nowrap;
+}
+
+.doc-table tbody th,
+.doc-table td {
+  padding: 1rem 1.5rem 1rem 0;
+  border-bottom: 1px solid var(--hairline-soft);
+  color: var(--platinum-dim);
+  line-height: 1.6;
+  vertical-align: top;
+}
+
+.doc-table td:last-child {
+  padding-right: 0;
+}
+
+/* ---------- support ---------- */
+
+.support-page {
+  padding-block: clamp(3.5rem, 8vh, 5.5rem) clamp(4rem, 9vh, 6.5rem);
+}
+
+.support-shell {
+  width: min(600px, 100% - 2.5rem);
+}
+
+.support-head {
+  text-align: center;
+}
+
+.support-title {
+  font-family: var(--font-display), serif;
+  font-weight: 400;
+  font-size: clamp(2.25rem, 8vw, 3.25rem);
+  letter-spacing: 0.06em;
+  color: var(--platinum);
+  margin-block: 0.9rem 1.5rem;
+}
+
+.support-intro {
+  color: var(--platinum-dim);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  max-width: 34em;
+  margin-inline: auto;
+}
+
+.support-inline-mail {
+  color: var(--platinum);
+  text-decoration: none;
+  border-bottom: 1px solid var(--brass);
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.support-inline-mail:hover {
+  color: var(--brass-bright);
+  border-color: var(--brass-bright);
+}
+
+/* signature: the address as a brass signet plate, the page's one job made unmissable */
+.mail-plate {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: center;
+  text-decoration: none;
+  margin: clamp(2.75rem, 6vh, 3.75rem) auto 0;
+  padding: clamp(2rem, 5vw, 2.75rem) clamp(1.5rem, 6vw, 3rem);
+  max-width: 30rem;
+  border: 1px solid var(--hairline);
+  background: color-mix(in srgb, var(--plate) 55%, transparent);
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.mail-plate:hover {
+  border-color: var(--brass);
+  background: color-mix(in srgb, var(--plate) 80%, transparent);
+}
+
+.mail-plate-tick {
+  position: absolute;
+  width: 0.9rem;
+  height: 0.9rem;
+  border: 1px solid var(--brass);
+  opacity: 0.7;
+}
+
+.mail-plate-tick.tl {
+  top: -1px;
+  left: -1px;
+  border-right: none;
+  border-bottom: none;
+}
+.mail-plate-tick.tr {
+  top: -1px;
+  right: -1px;
+  border-left: none;
+  border-bottom: none;
+}
+.mail-plate-tick.bl {
+  bottom: -1px;
+  left: -1px;
+  border-right: none;
+  border-top: none;
+}
+.mail-plate-tick.br {
+  bottom: -1px;
+  right: -1px;
+  border-left: none;
+  border-top: none;
+}
+
+.mail-plate-label {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--steel);
+}
+
+.mail-plate-address {
+  font-family: var(--font-display), serif;
+  font-weight: 400;
+  font-size: clamp(1.375rem, 5.5vw, 2rem);
+  letter-spacing: 0.02em;
+  color: var(--brass-bright);
+  word-break: break-word;
+}
+
+.mail-plate-note {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--steel-dim);
+}
+
+/* ---------- faq ---------- */
+
+.faq {
+  margin-top: clamp(4rem, 9vh, 6rem);
+}
+
+.faq-heading {
+  font-family: var(--font-display), serif;
+  font-weight: 400;
+  font-size: clamp(1.375rem, 3vw, 1.625rem);
+  letter-spacing: 0.06em;
+  color: var(--platinum);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.faq-list {
+  border-top: 1px solid var(--hairline);
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--hairline);
+  padding-block: 1.35rem;
+}
+
+.faq-q {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--platinum);
+}
+
+.faq-q::-webkit-details-marker {
+  display: none;
+}
+
+.faq-q::after {
+  content: "+";
+  flex-shrink: 0;
+  font-family: var(--font-mono), monospace;
+  font-size: 1.125rem;
+  color: var(--brass);
+  transition: transform 0.25s ease;
+}
+
+.faq-item[open] .faq-q::after {
+  transform: rotate(45deg);
+}
+
+.faq-q:focus-visible {
+  outline: 1px solid var(--brass-bright);
+  outline-offset: 4px;
+}
+
+.faq-a {
+  color: var(--platinum-dim);
+  line-height: 1.7;
+  max-width: 34em;
+  margin-top: 0.9rem;
+}
+
+/* ---------- support legal row ---------- */
+
+.support-legal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: clamp(3.5rem, 8vh, 5rem);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.support-legal-link {
+  color: var(--steel);
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.support-legal-link:hover {
+  color: var(--brass-bright);
+}
+
+.support-legal-sep {
+  color: var(--steel-dim);
 }
 
 /* ---------- scroll reveal ---------- */

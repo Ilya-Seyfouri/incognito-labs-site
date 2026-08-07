@@ -1,6 +1,5 @@
 import Reveal from "./reveal";
-
-const EMAIL = "ilya@incognitolabs.org";
+import { EMAIL, SiteFooter, SiteHeader } from "./site-chrome";
 
 /*
  * Engine-turned engraving: two sets of concentric hairline rings, one
@@ -72,19 +71,7 @@ const projects = [
 export default function Home() {
   return (
     <>
-      <header className="site-header">
-        <div className="shell header-inner">
-          <p className="legal-name">
-            INCOGNITO LABS <span className="ltd">LIMITED</span>
-          </p>
-          <div className="header-meta">
-            <span className="header-place">Newcastle · United Kingdom</span>
-            <a className="header-link" href={`mailto:${EMAIL}`}>
-              {EMAIL}
-            </a>
-          </div>
-        </div>
-      </header>
+      <SiteHeader />
 
       <main>
         <section className="hero">
@@ -191,27 +178,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="site-footer">
-        <div className="shell footer-grid">
-          <div className="footer-id">
-            <p className="legal-name">
-              INCOGNITO LABS <span className="ltd">LIMITED</span>
-            </p>
-            <p className="eyebrow">
-              iOS &amp; AI-powered mobile applications
-            </p>
-          </div>
-          <div className="footer-meta">
-            <a className="footer-mail" href={`mailto:${EMAIL}`}>
-              {EMAIL}
-            </a>
-            <span>Newcastle upon Tyne · United Kingdom</span>
-            <span>
-              INCOGNITO LABS LIMITED · Registered in England &amp; Wales · 2026
-            </span>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </>
   );
 }
