@@ -44,6 +44,12 @@ export function SiteFooter() {
           <Link className="footer-mail" href="/arc26/support">
             Winter Arc 26 — Support
           </Link>
+          <Link className="footer-mail" href="/hilal/privacy">
+            Hilal — Privacy policy
+          </Link>
+          <Link className="footer-mail" href="/hilal/terms">
+            Hilal — Terms &amp; EULA
+          </Link>
           <span>
             INCOGNITO LABS LIMITED · Registered in England &amp; Wales · 2026
           </span>
